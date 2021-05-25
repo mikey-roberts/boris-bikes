@@ -10,6 +10,4 @@ class Bike
   end
 end
 
-new_bike = DockingStation.new
-new_bike = new_bike.release_bike
-p new_bike.working?
+
