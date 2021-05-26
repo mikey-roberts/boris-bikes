@@ -1,19 +1,25 @@
 class DockingStation
+  attr_reader :dock, :bike
+
+  def dock(bike)
+    @bike = bike
+  end
+
   def release_bike
     bike = Bike.new
   end
-end
 
-@docked_bikes = 10
+
+
+end
 
 class Bike
   def working?
-  rand(0..1) == 1 ? true : false
+    true
+  #rand(0..1) == 1 ? true : false
   end
 
-  def return_bike
-    
-  end
+
 end
 
 
