@@ -1,17 +1,25 @@
 require 'boris_bikes.rb'
 
 describe DockingStation do
-  let(:bike) { subject.release_bike }
-  it 'confirms object can respond to method' do
-  expect(subject).to respond_to(:release_bike) 
-  expect(subject).to respond_to(:dock).with(1).argument
-  expect(subject).to respond_to(:bike)
-  end
+  let(:bikes) { subject }
   it 'docks something' do 
-  expect(subject.dock(bike)).to eq(bike) 
+    expect(subject.dock(bikes)).to eq [bikes]
   end
   it 'returns docked bike' do
-  subject.dock(bike)
-  expect(subject.bike).to eq bike
+    subject.dock(bikes)
+    expect(subject.bikes).to eq [bikes]
+  end
+  it 'releases a bike' do
+    subject.dock(bikes)
+    expect(subject.release_bike).to eq bikes
+  end
+  it 'raises an error when there are no bikes available' do
+    expect { subject.release_bike }.to raise_error 'No bikes available'
+  end
+  it 'raises an erorr when dock full' do
+      20.times { subject.dock bikes }
+      expect { subject.dock bikes }.to raise_error 'Dock is full'
+  end
+  it 'checks for 20 bikes at docking station' do    
   end
 end
